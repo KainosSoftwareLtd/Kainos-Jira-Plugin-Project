@@ -1,6 +1,6 @@
 ﻿
-$username = "robert.krasinski"
-$password = "123456"
+$username = "user"
+$password = "pass"
 
 $startAt = 0
 $maxRecords = 50
