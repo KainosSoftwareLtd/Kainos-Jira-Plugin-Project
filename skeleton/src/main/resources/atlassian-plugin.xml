@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="skeleton"/>
+  <!-- add our web resources -->
+  <web-resource key="skeleton-resources" name="skeleton Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="skeleton.css" location="/css/skeleton.css"/>
+    <resource type="download" name="skeleton.js" location="/js/skeleton.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>skeleton</context>
+  </web-resource>
+  <!-- publish our component -->
+  <component key="myPluginComponent" class="com.jiradev.jira.plugins.MyPluginComponentImpl" public="true">
+    <interface>com.jiradev.jira.plugins.MyPluginComponent</interface>
+  </component>
+  <!-- import from the product container -->
+  <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
+  <project-tabpanel key="statistic-panel" name="Statistic Panel" i18n-name-key="statistic-panel.name" class="com.jiradev.jira.plugins.statistic.StatisticPanel">
+    <description key="statistic-panel.description">The Statistic Panel Plugin</description>
+    <label key="statistic-panel.label"></label>
+    <order>10</order>
+    <resource type="velocity" name="view" location="templates/tabpanels/statistic-panel.vm"/>
+  </project-tabpanel>
+</atlassian-plugin>
