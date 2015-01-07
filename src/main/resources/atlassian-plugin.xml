@@ -15,6 +15,7 @@
     <dependency>com.atlassian.auiplugin:ajs</dependency>
     <resource type="download" name="skeleton.css" location="/css/skeleton.css"/>
     <resource type="download" name="skeleton.js" location="/js/skeleton.js"/>
+    <resource type="download" name="jquery.js" location="/js/jquery.js"/> 
     <resource type="download" name="images/" location="/images"/>
     <context>skeleton</context>
   </web-resource>

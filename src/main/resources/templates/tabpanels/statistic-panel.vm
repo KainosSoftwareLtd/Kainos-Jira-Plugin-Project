@@ -1,0 +1,102 @@
+<div class="mod-header">
+
+<!--
+<script src="$webResourceManager.getStaticPluginResource('com.jiradev.jira.plugins.skeleton:skeleton-resources', 'jquery.js')"></script>
+-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+var options = [];
+options['host'] = '$host';
+options['project_name'] = '$name';
+</script>
+<script src="$webResourceManager.getStaticPluginResource('com.jiradev.jira.plugins.skeleton:skeleton-resources', 'skeleton.js')"></script>
+
+<div id="kainos_loading">Trwa ładowanie ....</div>
+<div style="display: none;" id="kainos_content">
+
+
+<!-- debug -->
+<ul id="issues_list">
+<!-- end debug -->
+</ul>
+
+<!--
+<div class="aui-dropdown2 aui-style-default" id="hnavsettings-dropdown" data-dropdown2-alignment="right">
+    <ul>
+        <li><a >filtr1</a></li>
+        <li><a >filtr2</a></li>
+        <li><a >filtr3</a></li>
+        <li><a >filtr4</a></li>
+    </ul>
+</div>
+-->
+    <table class="aui aui-table-sortable" id="tabela_kainos_plugin">
+        <thead>
+	        <!--<tr>
+	            <th>Type</th>
+	            
+	            #foreach($v in [1..$cols])
+	            	<th>Col Name $v</th>
+	            #end
+	            
+	        <tr>
+	        -->
+	    </thead>
+	    <tbody>
+	    <!--
+	        <tr>
+	            <td>Max</td>
+	            #foreach($v in [1..$cols])
+	            	<td>$max</td>
+	            #end
+	        </tr>
+	        <tr>
+	            <td>Min</td>
+	            #foreach($v in [1..$cols])
+	            	<td>$min</td>
+	            #end
+	        </tr>
+	        <tr>
+	            <td>Avg</td>
+	            #foreach($v in [1..$cols])
+	            	<td>$avg</td>
+	            #end
+	        </tr>
+	        <tr>
+	            <td>Q1</td>
+	            #foreach($v in [1..$cols])
+	            	<td>$q1</td>
+	            #end
+	        </tr>
+	        <tr>
+	            <td>Q2</td>
+	            #foreach($v in [1..$cols])
+	            	<td>$q2</td>
+	            #end
+	        </tr>
+	        <tr>
+	            <td>Q3</td>
+	            #foreach($v in [1..$cols])
+	            	<td>$q3</td>
+	            #end
+	        </tr>
+	        <tr>
+	            <td>Q4</td>
+	            #foreach($v in [1..$cols])
+	            	<td>$q4</td>
+	            #end
+	        </tr>
+	        -->
+	    </tbody>
+	</table>
+	
+	<div style="margin: 20px 0;">
+		<button id="kainos_refresh" class="aui-button aui-button-primary">
+		<span class="aui-icon aui-icon-small aui-iconfont-build"></span>
+			Refresh
+		</button>
+	</div>
+
+</div>
+
+</div>
