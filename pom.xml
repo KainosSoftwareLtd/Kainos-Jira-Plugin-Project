@@ -6,11 +6,11 @@
     <artifactId>skeleton</artifactId>
     <version>1.0</version>
     <organization>
-        <name>Example Company</name>
-        <url>http://www.example.com/</url>
+        <name>Kainos</name>
+        <url>http:///</url>
     </organization>
-    <name>skeleton</name>
-    <description>This is the com.jiradev.jira.plugins:skeleton plugin for Atlassian JIRA.</description>
+    <name>Kainos</name>
+    <description>This is a kainos plugin for jira.</description>
     <packaging>atlassian-plugin</packaging>
     <dependencies>
         <dependency>

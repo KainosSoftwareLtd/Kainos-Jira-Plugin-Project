@@ -3,12 +3,16 @@
 <!--
 <script src="$webResourceManager.getStaticPluginResource('com.jiradev.jira.plugins.skeleton:skeleton-resources', 'jquery.js')"></script>
 -->
+<!--
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+-->
 <script>
 var options = [];
 options['host'] = '$host';
 options['project_name'] = '$name';
+console.log("url >> "+AJS.contextPath());
 </script>
+<script src="https://{HOSTNAME}:{PORT}/{CONTEXT}/atlassian-connect/all.js"></script>
 <script src="$webResourceManager.getStaticPluginResource('com.jiradev.jira.plugins.skeleton:skeleton-resources', 'skeleton.js')"></script>
 
 <div id="kainos_loading">Trwa ładowanie ....</div>

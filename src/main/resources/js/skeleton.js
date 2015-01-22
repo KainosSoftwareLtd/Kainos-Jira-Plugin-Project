@@ -1,31 +1,32 @@
 
 
-$( document ).ready(function(){
+AJS.$( document ).ready(function(){
 
 	getIssues();
 
-    $('#kainos_refresh').click(function(){
+    AJS.$('#kainos_refresh').click(function(){
         getIssues();
     });
 
-    $('#com.jiradev.jira.plugins.skeleton:statistic-panel-panel').click(function(){
+    /*AJS.$('#com.jiradev.jira.plugins.skeleton:statistic-panel-panel').click(function(){
         getIssues();
-    });
+    });*/
 
 });
 
 function getIssues(){
     data_tab = [];
-	$.ajax({
+    AJS.$.ajax({
         type: "GET",
         dataType   : 'json',
         url: options['host'] + '/rest/api/2/search?jql=project%3D"'+options['project_name']+'"&startAt=0&maxResults=1000&expand=changelog',
         beforeSend: function(){
-            console.log('loading start');
-            $('#kainos_loading').show();
-            $('#kainos_content').hide();
+            console.log('loading start ...');
+            AJS.$('#kainos_loading').show();
+            AJS.$('#kainos_content').hide();
         },
         success: function(obj) {
+
             for(var i in obj.issues) {
             	console.log(obj.issues[i]);
             	var id = obj.issues[i].id;
@@ -57,138 +58,147 @@ function getIssues(){
                     }
                 }
                 //
-            	
+
                 
             }
+
             //console.log(data_tab);
             //Table struct
             //thead
-            $('#tabela_kainos_plugin thead').html('');
-            $('#tabela_kainos_plugin thead').append('<tr></tr>');
-            $('#tabela_kainos_plugin thead tr').append('<th>Type</th>');
+            AJS.$('#tabela_kainos_plugin thead').empty();
+            AJS.$('#tabela_kainos_plugin thead').append('<tr></tr>');
+            AJS.$('#tabela_kainos_plugin thead tr').append('<th>Type</th>');
+            
             //tbody
-            $('#tabela_kainos_plugin tbody').html('');
-            $('#tabela_kainos_plugin tbody').append('<tr class="lbl_max"></tr>');
-            $('#tabela_kainos_plugin tbody').append('<tr class="lbl_min"></tr>');
-            $('#tabela_kainos_plugin tbody').append('<tr class="lbl_q1"></tr>');
-            $('#tabela_kainos_plugin tbody').append('<tr class="lbl_q2"></tr>');
-            $('#tabela_kainos_plugin tbody').append('<tr class="lbl_q3"></tr>');
-            $('#tabela_kainos_plugin tbody').append('<tr class="lbl_q4"></tr>');
-            $('#tabela_kainos_plugin tbody .lbl_max').append('<td>MAX</td>');
-            $('#tabela_kainos_plugin tbody .lbl_min').append('<td>MIN</td>');
-            $('#tabela_kainos_plugin tbody .lbl_q1').append('<td>Q1</td>');
-            $('#tabela_kainos_plugin tbody .lbl_q2').append('<td>Q2</td>');
-            $('#tabela_kainos_plugin tbody .lbl_q3').append('<td>Q3</td>');
-            $('#tabela_kainos_plugin tbody .lbl_q4').append('<td>Q4</td>');
+            AJS.$('#tabela_kainos_plugin tbody').html('');
+            AJS.$('#tabela_kainos_plugin tbody').append('<tr class="lbl_max"></tr>');
+            AJS.$('#tabela_kainos_plugin tbody').append('<tr class="lbl_min"></tr>');
+            AJS.$('#tabela_kainos_plugin tbody').append('<tr class="lbl_q1"></tr>');
+            AJS.$('#tabela_kainos_plugin tbody').append('<tr class="lbl_q2"></tr>');
+            AJS.$('#tabela_kainos_plugin tbody').append('<tr class="lbl_q3"></tr>');
+            AJS.$('#tabela_kainos_plugin tbody').append('<tr class="lbl_q4"></tr>');
+            AJS.$('#tabela_kainos_plugin tbody .lbl_max').append('<td>MAX</td>');
+            AJS.$('#tabela_kainos_plugin tbody .lbl_min').append('<td>MIN</td>');
+            AJS.$('#tabela_kainos_plugin tbody .lbl_q1').append('<td>Q1</td>');
+            AJS.$('#tabela_kainos_plugin tbody .lbl_q2').append('<td>Q2</td>');
+            AJS.$('#tabela_kainos_plugin tbody .lbl_q3').append('<td>Q3</td>');
+            AJS.$('#tabela_kainos_plugin tbody .lbl_q4').append('<td>Q4</td>');
             //add data to table
             for(var name in data_tab){
                 //thead
-                $('#tabela_kainos_plugin thead tr').append('<th>'+name+'</th>');
+                AJS.$('#tabela_kainos_plugin thead tr').append('<th>'+name+'</th>');
+                console.log(name);
+                console.log(data_tab[name]);
                 //tbody
-                $('#tabela_kainos_plugin tbody .lbl_max').append('<td>'+Math.round(showMax(data_tab[name]))+'</td>');
-                $('#tabela_kainos_plugin tbody .lbl_min').append('<td>'+Math.round(showMin(data_tab[name]))+'</td>');
-                $('#tabela_kainos_plugin tbody .lbl_q1').append('<td>'+Math.round(showQ1(data_tab[name]))+'</td>');
-                $('#tabela_kainos_plugin tbody .lbl_q2').append('<td>'+Math.round(showQ2(data_tab[name]))+'</td>');
-                $('#tabela_kainos_plugin tbody .lbl_q3').append('<td>'+Math.round(showQ3(data_tab[name]))+'</td>');
-                $('#tabela_kainos_plugin tbody .lbl_q4').append('<td>'+Math.round(showQ4(data_tab[name]))+'</td>');
+                AJS.$('#tabela_kainos_plugin tbody .lbl_max').append('<td>'+round(showMax(data_tab[name]))+'</td>');
+                AJS.$('#tabela_kainos_plugin tbody .lbl_min').append('<td>'+round(showMin(data_tab[name]))+'</td>');
+                AJS.$('#tabela_kainos_plugin tbody .lbl_q1').append('<td>'+round(showQ1(data_tab[name]))+'</td>');
+                AJS.$('#tabela_kainos_plugin tbody .lbl_q2').append('<td>'+round(showQ2(data_tab[name]))+'</td>');
+                AJS.$('#tabela_kainos_plugin tbody .lbl_q3').append('<td>'+round(showQ3(data_tab[name]))+'</td>');
+                AJS.$('#tabela_kainos_plugin tbody .lbl_q4').append('<td>'+round(showQ4(data_tab[name]))+'</td>');
             }
+
             //alert("Nie udało się zmienić danych, jeśli problem będzie się powtarzał prosimy o kontakt z administracją.");
         },
         error: function() {
-                alert("Wystapił błąd systemu, prosimy o kontakt z administracją.");
+            console.log("query error");
+            alert("Wystapił błąd systemu, prosimy o kontakt z administracją.");
         },
         complete: function(){
             console.log('loading stop');
-            $('#kainos_loading').hide();
-            $('#kainos_content').show();
+            AJS.$('#kainos_loading').hide();
+            AJS.$('#kainos_content').show();
         },
     });
+}
+
+function round(num){
+    return Math.round(num*100)/100; //return xx.xx
 }
 
 /* pr0 el0 funkcje czarka */
 
 function showMax(tab) {
-tab.sort(function(a, b) {
-return b - a
-});
-return tab[0];
+    tab.sort(function(a, b) {
+        return b - a
+    });
+    return tab[0];
 }
 
 function showMin(tab) {
-tab.sort(function(a, b) {
-return a - b
-});
-return tab[0];
+    tab.sort(function(a, b) {
+        return a - b
+    });
+    return tab[0];
 }
 
 function showQ1 (tab) {
-var q1 = 0;
-var positionq1;
-var n = tab.length;
-tab.sort(function(a, b){return a-b});
-if (n % 2 == 0) {
-positionq1 = (n + 1) * 0.25;
-var positionq1int = parseInt(positionq1);
-var leftover = ((positionq1 * 100) % 100) / 100;
-q1 = (tab[positionq1int - 1] + (leftover * (tab[positionq1int] - tab[positionq1int - 1])));
-return q1;
-} else {
-positionq1 = n * 0.25;
-var positionq1int = parseInt(positionq1);
-var leftover = ((positionq1 * 100) % 100) / 100;
-q1 = (tab[positionq1int - 1] + (leftover * (tab[positionq1int] - tab[positionq1int - 1])));
-return q1;
-}
+    var pos = 0;
+
+    var n = tab.length;
+    tab.sort(function(a, b){return a-b});
+
+    pos = Math.round(n*0.25);
+
+    /*console.log("Q1");
+    console.log(tab);
+    console.log(pos);
+    console.log(n);
+    console.log("<<Q1");*/
+
+    if(pos == 0){
+        return tab[pos];
+    }else{
+        return tab[pos-1];
+    }
+    
 }
 
+function showQ2 (tab) {
+    var pos = 0;
 
-function showQ2(tab) {
-var q2 = 0;
-var positionq2;
-var n = tab.length;
-tab.sort(function(a, b) {
-return a - b
-});
-if (n % 2 == 0) {
-positionq2 = (n + 1) * 0.5;
-var positionq2int = parseInt(positionq2);
-var leftover = ((positionq2 * 100) % 100) / 100;
-q2 = (tab[positionq2int - 1] + (leftover * (tab[positionq2int] - tab[positionq2int - 1])));
-return q2;
-} else {
-positionq2 = n * 0.5;
-var positionq2int = parseInt(positionq2);
-var leftover = ((positionq2 * 100) % 100) / 100;
-q2 = (tab[positionq2int - 1] + (leftover * (tab[positionq2int] - tab[positionq2int - 1])));
-return q2;
-}
+    var n = tab.length;
+    tab.sort(function(a, b){return a-b});
+
+    pos = Math.round(n*0.5);
+
+    /*console.log("Q2");
+    console.log(tab);
+    console.log(pos);
+    console.log(n);
+    console.log("<<Q2");*/
+
+    if(pos == 0){
+        return tab[pos];
+    }else{
+        return tab[pos-1];
+    }
 }
 
-function showQ3(tab) {
-var q3 = 0;
-var positionq3;
-var n = tab.length;
-tab.sort(function(a, b) {
-return a - b
-});
-if (n % 2 == 0) {
-positionq3 = (n + 1) * 0.75;
-var positionq3int = parseInt(positionq3);
-var leftover = ((positionq3 * 100) % 100) / 100;
-q3 = (tab[positionq3int - 1] + (leftover * (tab[positionq3int] - tab[positionq3int - 1])));
-return q3;
-} else {
-positionq3 = n * 0.75;
-var positionq3int = parseInt(positionq3);
-var leftover = ((positionq3 * 100) % 100) / 100;
-q3 = (tab[positionq3int - 1] + (leftover * (tab[positionq3int] - tab[positionq3int - 1])));
-return q3;
-}
+function showQ3 (tab) {
+    var pos = 0;
+
+    var n = tab.length;
+    tab.sort(function(a, b){return a-b});
+
+    pos = Math.round(n*0.75);
+
+    /*console.log("Q3");
+    console.log(tab);
+    console.log(pos);
+    console.log(n);
+    console.log("<<Q3");*/
+
+    if(pos == 0){
+        return tab[pos];
+    }else{
+        return tab[pos-1];
+    }
 }
 
 function showQ4(tab) {
-tab.sort(function(a, b) {
-return b - a
-});
-return tab[0];
+    tab.sort(function(a, b) {
+        return b - a
+    });
+    return tab[0];
 }
