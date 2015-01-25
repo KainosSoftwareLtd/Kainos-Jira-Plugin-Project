@@ -21,11 +21,9 @@ public class StatisticPanel extends AbstractProjectTabPanel implements ProjectTa
 
     public Map createVelocityParams (BrowseContext ctx)
     {
-        //Get the params object. This will hold all the values that can be accessed in the user-role-project-tab.properties file
         Map params = super.createVelocityParams(ctx);
         
-        //Project project = ctx.getProject();
-        
+        /* start test */
     	double[] tab = new double[] { 12, 36, 40, 40, 40, 41, 42, 42, 42,
     			42, 43, 44, 44, 45, 46, 47, 48, 50, 50, 50, 50, 52, 54, 55, 55,
     			56, 60, 60, 62, 63, 63, 64, 65, 65, 65, 65, 68, 70, 70, 73,
@@ -40,13 +38,15 @@ public class StatisticPanel extends AbstractProjectTabPanel implements ProjectTa
     	params.put("q4", Statistic.Q4(tab));
     	//params.put("q4", project.getName());
         params.put("cols", 3);
-        //
+        /* end test */
+
         Project project = ctx.getProject();
-        params.put("name", project.getName());
-        //
-        String host = ComponentAccessor.getApplicationProperties().getString("jira.baseurl");
-        params.put("host", host);
-        return params;
+        String host = ComponentAccessor.getApplicationProperties().getString("jira.baseurl"); 
+
+        params.put("name", project.getName()); //project name    
+        params.put("host", host); //base url
+
+        return params; //return params to view
     }
     
     public boolean showPanel(BrowseContext context)
